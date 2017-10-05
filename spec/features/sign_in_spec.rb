@@ -1,14 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature "SignIn", type: :feature do
-  scenario 'Registered user try to sign in' do
-    User.create(email: 'user@test.com', password: '111111', password_confirmation: '111111')
+  given(:user) { create(:user) }
 
-    visit new_user_session_path
-    fill_in 'Email', with: 'user@test.com'
-    fill_in 'Password', with: '111111'
-    click_on 'Log in'
-    # save_and_open_page # если нужно посмотреть страницу
+  scenario 'Registered user try to sign in' do
+    sign_in(user)
 
     expect(page).to have_content 'Signed in successfully.'
     expect(current_path).to eq root_path
