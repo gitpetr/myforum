@@ -10,7 +10,15 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
+# Ignore RubyMine
 /.idea/*
+
+# Ignore uploaded files
+/public/uploads/*
+/public/system/*
+/public/tmp/*
+/public/spec/*
+
 !/log/.keep
 !/tmp/.keep
 

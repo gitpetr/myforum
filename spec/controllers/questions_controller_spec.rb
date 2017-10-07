@@ -7,6 +7,7 @@ RSpec.describe QuestionsController, type: :controller do
 
 
   describe 'Get #index' do
+    Question.delete_all
     subject(:question_list) { create_list(:question, 2) }
 
     before do
@@ -30,6 +31,10 @@ RSpec.describe QuestionsController, type: :controller do
       expect(assigns(:question)).to eq subject
     end
 
+    it 'builds new attachment for answer' do
+      expect(assigns(:answer).attachments.first).to be_a_new(Attachment)
+    end
+
     it 'assings the requested question to @question' do
       expect(assigns(:answer)).to be_a_new(Answer)
     end
@@ -45,6 +50,10 @@ RSpec.describe QuestionsController, type: :controller do
 
     it 'assigns a new Question to @question' do
       expect(assigns(:question)).to be_a_new(Question)
+    end
+
+    it 'builds new attachment for question' do
+      expect(assigns(:question).attachments.first).to be_a_new(Attachment)
     end
 
     it 'renders new view' do
